@@ -1,0 +1,76 @@
+### READ all Blogs
+GET http://localhost:3003/api/blogs
+
+### CREATE Blog
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcnkiLCJpZCI6IjYyMzcyNzZkMDZjOTViMmQyYmMwMDUwNCIsImlhdCI6MTY0Nzc4MTc0OCwiZXhwIjoxNjQ3Nzg1MzQ4fQ.h94drfVT5cGtHE0wwBWTIFiOqZR18ScW8wjZkr6IAY0
+
+{
+  "title": "Top 15 people",
+  "author": "Joe Johnson",
+  "url": "https://www.economist.com/",
+  "likes": "193"
+}
+
+### DELETE Blog
+DELETE http://localhost:3003/api/blogs/6237314b6911154bda7cd23d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcnkiLCJpZCI6IjYyMzcyNzZkMDZjOTViMmQyYmMwMDUwNCIsImlhdCI6MTY0Nzc4MTc0OCwiZXhwIjoxNjQ3Nzg1MzQ4fQ.h94drfVT5cGtHE0wwBWTIFiOqZR18ScW8wjZkr6IAY0
+
+### UPDATE Blog
+PUT http://localhost:3003/api/blogs/6237314b6911154bda7cd23d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcnkiLCJpZCI6IjYyMzcyNzZkMDZjOTViMmQyYmMwMDUwNCIsImlhdCI6MTY0Nzc4MTc0OCwiZXhwIjoxNjQ3Nzg1MzQ4fQ.h94drfVT5cGtHE0wwBWTIFiOqZR18ScW8wjZkr6IAY0
+
+{
+  "title": "Top 10 people",
+  "author": "Joe Johnson",
+  "url": "https://www.economist.com/",
+  "likes": "194"
+}
+
+### READ all Comments
+GET http://localhost:3003/api/comments/
+
+### CREATE Comment
+POST http://localhost:3003/api/comments/
+Content-Type: application/json
+
+{
+  "blog": "62373bb0fa62d9e60d7eb4c1",
+  "content": "is this for real"
+}
+
+### READ all Users
+GET http://localhost:3003/api/users
+
+### CREATE User
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "mary",
+  "name": "Mary Poppins",
+  "password": "secret1"
+}
+
+### User login success
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "mary",
+  "password": "secret1"
+}
+
+### User login fail
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "mary",
+  "password": "wrong"
+}
+
+### Delete user
+DELETE http://localhost:3003/api/users/6235d225604606cd8098da24
