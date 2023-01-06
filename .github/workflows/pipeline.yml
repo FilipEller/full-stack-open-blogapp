@@ -42,3 +42,6 @@ jobs:
           cd ..
           cd bloglist-backend
           npm run test
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
