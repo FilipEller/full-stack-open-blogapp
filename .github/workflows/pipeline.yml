@@ -28,4 +28,10 @@ jobs:
           cd ..
           cd bloglist-backend
           npm install
+      - name: lint
+        run: |
+          cd bloglist-frontend
+          npm run lint
           cd ..
+          cd bloglist-backend
+          npm run lint
