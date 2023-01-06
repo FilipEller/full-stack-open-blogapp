@@ -25,23 +25,32 @@ jobs:
         run: |
           cd bloglist-frontend
           npm install
-          cd ..
-          cd bloglist-backend
+          cd ../bloglist-backend
           npm install
       - name: lint
         run: |
           cd bloglist-frontend
           npm run lint
-          cd ..
-          cd bloglist-backend
+          cd ../bloglist-backend
           npm run lint
       - name: test
         run: |
           cd bloglist-frontend
           npm run test:once
-          cd ..
-          cd bloglist-backend
+          cd ../bloglist-backend
           npm run test
         env:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
+      - name: start backend in the background
+        run: cd bloglist-backend && npm run start:test &
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: bloglist-frontend
+          start: npm start
+          command: npm run test:e2e
+          wait-on: http://localhost:3000, http://localhost:3003/api/blogs
