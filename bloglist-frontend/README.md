@@ -1,6 +1,7 @@
 These credentials can be used for testing purposes:
-Username: dante
-Password: secret2
 
-Username: mary
-Password: secret1
+username: mary  
+password: secret1
+
+username: dante  
+password: secret2
