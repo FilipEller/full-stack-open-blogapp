@@ -7,7 +7,7 @@ const api = supertest(app)
 
 beforeEach(async () => {
   await helper.seedDatabase()
-})
+}, 10000)
 
 describe('with some initially saved blogs', () => {
   test('blogs are returned as JSON', async () => {
