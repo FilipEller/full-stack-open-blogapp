@@ -1,4 +1,7 @@
 {
+  "engines" : { 
+    "node" : "16.13.1" 
+  },
   "name": "bloglist-backend",
   "version": "1.0.0",
   "description": "",
@@ -10,7 +13,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit",
-    "start:test": "cross-env NODE_ENV=test node index.js"
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "build:ui": "rm -rf build && cd ../bloglist-frontend && npm run build && cp -r build ../bloglist-backend",
+    "deploy": "flyctl deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "flyctl logs"
   },
   "keywords": [],
   "author": "",
