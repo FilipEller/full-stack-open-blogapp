@@ -35,3 +35,10 @@ jobs:
           cd ..
           cd bloglist-backend
           npm run lint
+      - name: test
+        run: |
+          cd bloglist-frontend
+          npm run test:once
+          cd ..
+          cd bloglist-backend
+          npm run test

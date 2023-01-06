@@ -17,7 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:once": "CI=true npm test",
+    "test:once": "cross-env CI=true npm test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "cypress:open": "cypress open",
@@ -46,6 +46,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
+    "cross-env": "^7.0.3",
     "cypress": "^9.6.1",
     "eslint-plugin-cypress": "^2.12.1"
   }
