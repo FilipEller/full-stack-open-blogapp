@@ -56,5 +56,23 @@ jobs:
       #     command: npm run test:e2e
       #     wait-on: http://localhost:3000, http://localhost:3003/api/blogs
       - uses: superfly/flyctl-actions/setup-flyctl@master
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' / '), '#skip') }}
       - run: flyctl deploy --remote-only
         working-directory: ./bloglist-backend
+        if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' / '), '#skip') }}
+      - name: build failure
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ failure() && github.event_name == 'push' }}
+        with:
+          severity: error
+          text: Build failed
+          description: commit ${{ github.event.head_commit.url }} by ${{ github.event.head_commit.author.username }} broke the build.
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: deployment success
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' / '), '#skip') }}
+        with:
+          severity: info
+          text: A new version of Pokedex deployed
+          description: https://shielded-woodland-56383.herokuapp.com/ by ${{ github.event.head_commit.author.username }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
