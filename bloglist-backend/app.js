@@ -50,6 +50,14 @@ app.use('/error', () => {
   throw new Error('testing error')
 })
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
+app.get('/version', (req, res) => {
+  res.send('3')
+})
+
 app.use(unknownEndpoint)
 app.use(errorHandler)
 

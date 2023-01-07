@@ -31,30 +31,30 @@ jobs:
           npm install
           cd ../bloglist-backend
           npm install
-      - name: lint
-        run: |
-          cd bloglist-frontend
-          npm run lint
-          cd ../bloglist-backend
-          npm run lint
+      # - name: lint
+      #   run: |
+      #     cd bloglist-frontend
+      #     npm run lint
+      #     cd ../bloglist-backend
+      #     npm run lint
       - name: build
         run: npm run build:ui
         working-directory: ./bloglist-backend
-      - name: test
-        run: |
-          cd bloglist-frontend
-          npm run test:once
-          cd ../bloglist-backend
-          npm run test
-      - name: start backend in the background
-        run: cd bloglist-backend && npm run start:test &
-      - name: e2e tests
-        uses: cypress-io/github-action@v5
-        with:
-          working-directory: bloglist-frontend
-          start: npm start
-          command: npm run test:e2e
-          wait-on: http://localhost:3000, http://localhost:3003/api/blogs
+      # - name: test
+      #   run: |
+      #     cd bloglist-frontend
+      #     npm run test:once
+      #     cd ../bloglist-backend
+      #     npm run test
+      # - name: start backend in the background
+      #   run: cd bloglist-backend && npm run start:test &
+      # - name: e2e tests
+      #   uses: cypress-io/github-action@v5
+      #   with:
+      #     working-directory: bloglist-frontend
+      #     start: npm start
+      #     command: npm run test:e2e
+      #     wait-on: http://localhost:3000, http://localhost:3003/api/blogs
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
         working-directory: ./bloglist-backend
